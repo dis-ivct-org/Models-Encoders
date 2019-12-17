@@ -1,5 +1,5 @@
 include 'GrimRprFom'
-include 'HLACoders'
+include 'IVCT_DIS_plugin'
 
 rootProject.children.each { project ->
     project.buildFileName = "${project.name}.gradle"

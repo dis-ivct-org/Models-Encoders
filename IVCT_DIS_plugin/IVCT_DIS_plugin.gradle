@@ -1,10 +1,15 @@
 plugins {
     id 'java-library'
-    id 'eclipse'
     id 'maven'
 }
 
+
 dependencies {
+
+    compile     project(":GrimRprFom")
+
+    compileOnly libraries.tc_lib
+
     compileOnly libraries.slf4j_api
 
     compileOnly libraries.logback_classic
@@ -13,4 +18,9 @@ dependencies {
     compileOnly libraries.slf4j_jcl_over_slf4j
     compileOnly libraries.slf4j_jul_to_slf4j
     compileOnly libraries.slf4j_log4j_over_slf4j
+
+    compile     libraries.jsonSimple
+
+    compile     files ("../openDis/open-dis_4.16.jar")
+    compile     files ("../openDis/dis-enums_1.1.jar")
 }

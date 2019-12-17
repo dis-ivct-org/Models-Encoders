@@ -56,6 +56,7 @@ public class MunitionDetonationCSVReader {
                             csvItems.get(MunitionDetonationHeader.EVENT_COUNT.ordinal()),
                             csvItems.get(MunitionDetonationHeader.EVENT_ID.ordinal())
                         ));
+                    
                     newMunitionDetonation.setFiringObjectIdentifier(csvItems.get(MunitionDetonationHeader.FIRING_OBJECT_ID.ordinal()));
 
                     String[] headingPitchSpeed = csvItems.get(MunitionDetonationHeader.HEADING_PITCH_SPEED.ordinal()).split(":");
@@ -136,7 +137,7 @@ public class MunitionDetonationCSVReader {
 
         try (BufferedReader br = new BufferedReader(new InputStreamReader(partsData.get().openStream()))) {
             // skip header
-            line = br.readLine();
+            br.readLine();
 
             while ((line = br.readLine()) != null && !line.isEmpty()) {
                 List<String> csvItems = Arrays.asList(line.split(csvSplitBy));
@@ -148,7 +149,9 @@ public class MunitionDetonationCSVReader {
                 int articulatedParameterType = Integer.parseInt(csvItems.get(MunitionDetonationPartHeader.ARTICULATED_PARAMETER_TYPE.ordinal()));
                 ParameterValue parameterValue;
 
-                if (articulatedParameterType == 0) {
+                int articulatedParameterTypeDesignator = Integer.parseInt(csvItems.get(MunitionDetonationPartHeader.ARTICULATED_PARAMETER_TYPE_DESIGNATOR.ordinal()));
+
+                if (articulatedParameterTypeDesignator == 0) {
                     ArticulatedPartsStruct articulatedParts = new ArticulatedPartsStruct();
                     articulatedParts.setArticulatedPartsType(Long.parseLong(csvItems.get(MunitionDetonationPartHeader.ARTICULATED_PARTS_TYPE.ordinal())));
                     articulatedParts.setValue(Float.parseFloat(csvItems.get(MunitionDetonationPartHeader.ARTICULATED_PARTS_VALUE.ordinal())));
@@ -209,6 +212,7 @@ public class MunitionDetonationCSVReader {
     }
 
     private enum MunitionDetonationPartHeader {
+        ARTICULATED_PARAMETER_TYPE_DESIGNATOR("ArticulatedParameterTypeDesignator"),
         ARTICULATED_PARAMETER_CHANGE("ArticulatedParameterChange"),
         PART_ATTACHED_TO("PartAttachedTo"),
         ARTICULATED_PARAMETER_TYPE("ArticulatedParameterType"),

@@ -6,7 +6,7 @@ ext {
     gradleWrapperVersion = "${gradleVersion}"
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~ IVCT settings
-    ivctVersion = '2.1.1'
+    ivctVersion = '2.2.0'
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~ GRIM RPR FOM settings
     modelEncoderVersion = "1.0.0"
@@ -15,6 +15,7 @@ ext {
     junitVersion = '4.+'
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~ thirdparty
+    jsonSimpleVersion = '1.1.1'
     logbackVersion = '1.1.3'
     slf4jVersion = '1.7.10'
     hamcrestVersion = '1.1'
@@ -23,7 +24,12 @@ ext {
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~  now create libraries with the versions from above
     libraries = [
+
+            tc_lib                : "io.github.msg134:TC.lib:${ivctVersion}",
+
             // ~~~~~~~~~~~~~~~~~~~~~~~~~~ thirdparty
+            jsonSimple            : "com.googlecode.json-simple:json-simple:${jsonSimpleVersion}",
+
             logback_classic       : "ch.qos.logback:logback-classic:${logbackVersion}",
             logback_core          : "ch.qos.logback:logback-core:${logbackVersion}",
 
